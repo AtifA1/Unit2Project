@@ -55,5 +55,4 @@ public class LinearEquation {
         double y = roundedToHundredth(slope() * x + yIntercept());
         return "(" + roundedToHundredth(x) + ", " + y + ")";
     }
-
 }
