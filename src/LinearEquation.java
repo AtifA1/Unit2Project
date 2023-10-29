@@ -10,6 +10,9 @@ public class LinearEquation {
         this.x2 = x2;
         this.y2 = y2;
     }
+    private double roundedToHundredth(double toRound) { //Rounds to the hundreths place
+        return Math.round(toRound * 100.0) / 100.0;
+    }
     public double distance() {
         double dx = x2 - x1;
         double dy = y2 - y1;
@@ -47,9 +50,6 @@ public class LinearEquation {
                 "The slope of this line is: " + slope() + "\n" +
                 "The y-intercept of this line is: " + yIntercept() + "\n" +
                 "The distance between these points is " + distance();
-    }
-    private double roundedToHundredth(double toRound) { //Rounds to the hundreths place
-        return Math.round(toRound * 100.0) / 100.0;
     }
     public String coordinateForX(double x) {
         double y = roundedToHundredth(slope() * x + yIntercept());
