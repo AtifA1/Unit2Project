@@ -37,11 +37,11 @@ public class LinearEquation {
         } else if (slope == 0) {
             return "y = " + yIntercept;
         } else if (yIntercept == 0) {
-            return "y = " + slope + "x";
+            return "y = " + (y2 - y1) + "/" + (x2 - x1) + "x";
         } else if (yIntercept > 0) {
-            return "y = " + slope + "x + " + yIntercept;
+            return "y = " + (y2-y1) + "/" + (x2-x1) + "x + " + yIntercept;
         } else {
-            return "y = " + slope + "x - " + (-yIntercept);
+            return "y = " + (y2-y1) + "/" + (x2-x1) + "x - " + (-yIntercept);
         }
     }
     public String lineInfo() {

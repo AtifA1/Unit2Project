@@ -18,7 +18,8 @@ public class LinearEquationLogic {
             double xValue = getXValueFromUser();
             System.out.println("The point of the line is " + equation.coordinateForX(xValue));
 
-            if (repeat()) { //if you don't enter yes, the program will stop
+            myScanner.nextLine();
+            if (repeat() != true) { //if you don't enter y, the program will stop
                 break;
             }
         }
@@ -39,12 +40,11 @@ public class LinearEquationLogic {
         return new LinearEquation(x1, y1, x2, y2); //returns to LinearEquation
     }
 
-
-
     private double getXValueFromUser() {
         System.out.print("Enter an x value: ");
         return myScanner.nextDouble();
     }
+
     private boolean repeat() {
         System.out.print("Do you want to enter another pair of coordinates? (y/n): ");
         String response = myScanner.nextLine();
