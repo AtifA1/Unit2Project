@@ -32,10 +32,8 @@ public class LinearEquation {
         int deltaX = x2 - x1;
 
         if (deltaY == 0) {
-            // Handle the case of a horizontal line
             return "y = " + y1;
         } else {
-            // Handle the slope as a fraction
             int absDeltaY = Math.abs(deltaY);
             int absDeltaX = Math.abs(deltaX);
 
@@ -46,10 +44,17 @@ public class LinearEquation {
                 absDeltaY = Math.abs(absDeltaY);
             }
 
-            if (absDeltaX == 1) {
-                slopePart = absDeltaY + "x";
+            if (absDeltaY % absDeltaX == 0) {
+                int wholeNumberSlope = absDeltaY / absDeltaX;
+                if (wholeNumberSlope == 1) {
+                    slopePart = "";
+                } else if (wholeNumberSlope == -1) {
+                    slopePart = "-";
+                } else {
+                    slopePart = wholeNumberSlope + "";
+                }
             } else {
-                slopePart = absDeltaY + "/" + absDeltaX + "x";
+                slopePart = absDeltaY + "/" + absDeltaX;
             }
 
             int yInterceptValue = (int) yIntercept();
@@ -67,12 +72,13 @@ public class LinearEquation {
             if ((deltaX < 0 && deltaY > 0) || (deltaX > 0 && deltaY < 0)) {
                 slopePart = "-" + slopePart;
             }
-
-            return "y = " + slopePart + yInterceptPart;
+            return "y = " + slopePart + "x" + yInterceptPart;
         }
     }
 
-
+    public boolean isVerticalLine() {
+        return x1 == x2;
+    }
 
     public String lineInfo() {
         return "The two points are: (" + x1 + ", " + y1 + ") and (" + x2 + ", " + y2 + ")\n" +
