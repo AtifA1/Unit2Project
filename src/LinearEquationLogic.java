@@ -22,7 +22,7 @@ public class LinearEquationLogic {
                 double xValue = getXValueFromUser(equation);
                 System.out.println("The point of the line is " + equation.coordinateForX(xValue));
             }
-
+            myScanner.nextLine();
             if (!repeat()) { // if you don't enter 'y', the program will stop
                 break;
             }
