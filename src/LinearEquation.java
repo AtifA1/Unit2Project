@@ -26,24 +26,54 @@ public class LinearEquation {
     public double slope() {
         return roundedToHundredth(((double) (y2 - y1) / (x2 - x1)));
     }
-    public String equation() { //returns the full equation of the line
-        double slope = slope();
-        double yIntercept = yIntercept();
 
-        if (slope == 1) {
-            return "y = x + " + yIntercept;
-        } else if (slope == -1) {
-            return "y = -x + " + yIntercept;
-        } else if (slope == 0) {
-            return "y = " + yIntercept;
-        } else if (yIntercept == 0) {
-            return "y = " + (y2 - y1) + "/" + (x2 - x1) + "x";
-        } else if (yIntercept > 0) {
-            return "y = " + (y2-y1) + "/" + (x2-x1) + "x + " + yIntercept;
+    public String equation() {
+        int deltaY = y2 - y1;
+        int deltaX = x2 - x1;
+
+        if (deltaY == 0) {
+            // Handle the case of a horizontal line
+            return "y = " + y1;
         } else {
-            return "y = " + (y2-y1) + "/" + (x2-x1) + "x - " + (-yIntercept);
+            // Handle the slope as a fraction
+            int absDeltaY = Math.abs(deltaY);
+            int absDeltaX = Math.abs(deltaX);
+
+            String slopePart;
+
+            if (deltaX < 0 && deltaY < 0) {
+                absDeltaX = Math.abs(absDeltaX);
+                absDeltaY = Math.abs(absDeltaY);
+            }
+
+            if (absDeltaX == 1) {
+                slopePart = absDeltaY + "x";
+            } else {
+                slopePart = absDeltaY + "/" + absDeltaX + "x";
+            }
+
+            int yInterceptValue = (int) yIntercept();
+
+            String yInterceptPart = "";
+
+            if (yInterceptValue != 0) {
+                if (yInterceptValue > 0) {
+                    yInterceptPart = " + " + yInterceptValue;
+                } else if (yInterceptValue < 0) {
+                    yInterceptPart = " - " + Math.abs(yInterceptValue);
+                }
+            }
+
+            if ((deltaX < 0 && deltaY > 0) || (deltaX > 0 && deltaY < 0)) {
+                slopePart = "-" + slopePart;
+            }
+
+            return "y = " + slopePart + yInterceptPart;
         }
     }
+
+
+
     public String lineInfo() {
         return "The two points are: (" + x1 + ", " + y1 + ") and (" + x2 + ", " + y2 + ")\n" +
                 "The equation of the line between these points is: " + equation() + "\n" +
